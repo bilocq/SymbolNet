@@ -33,4 +33,6 @@ More detailed explanations can be found as comments within the scripts contained
 
 
 ### How to run this code
-Create a Python virtual environment and install the requirements file (pip install -r requirements.txt). I've tested this code with Python 3.8.
+Create a Python virtual environment and install the requirements file (pip install -r requirements.txt). I've tested this code with Python 3.8. The train.py, pairing_test.py, classification_test.py, register_memory.py and interactive.py scripts can all be run from the command line with the appropriate arguments. 
+
+When running train.py, the "folder" arguments (expects a path to a folder) determines whether we start from scratch (empty or non-existent folder) or resume from previous training (folder created by a previous run train.py). Once the first training run is completed, the specified folder should look like the "pretrained_example" folder in this repo, except for the memory.pkl which gets created when running register_memory.py. The "folder" argument in any of the other main scripts should point to a folder that was created by a previous run of train.py. Note that the use of the "check_folder" function, in symbolnet_utils/folder_tool.py, makes sure that pre-existing files and folder won't be overwritten by specifying the wrong value for the "folder" argument.
