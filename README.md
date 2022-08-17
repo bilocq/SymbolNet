@@ -21,7 +21,7 @@ Let's take an example. If you had a vanilla classification neural network traine
   - A "pairing test", where pairs of images are shown to the network and it has to decide whether or not the two images belong to the same category.
   - A classification test, where the network compares new images to memorized images from various categories to attempt to classify the new images.
 
-* The bash script train_and_test.sh can be used to train and test an instance of SymbolNet all at once. With the default settings, it will train using uppercase letters and perform pairing and classification tests on both uppercase letters and digits separately. The tests with digits are meant to demonstrate the transfer learning capabilities of SymbolNet.
+* The train_and_test.sh script can be used to train and test an instance of SymbolNet all at once. With the default settings, it will train using uppercase letters and perform pairing and classification tests on both uppercase letters and digits separately. The tests with digits are meant to demonstrate the transfer learning capabilities of SymbolNet.
 
 * A code to "register memory" of requested categories, in register_memory.py. The memory of a category consists in a set of features at the output of each of the feature network's convolutional blocks, obtained by mapping images from that category through the feature network. The "num_mem" argument decides how many sets of features to memorize for each category, whereas the "num_see" decides how many images are used to get these sets of features. If num_see > num_mem, then a K-means algorithm is used to produce the memorized features.
 
