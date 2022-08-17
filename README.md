@@ -21,15 +21,15 @@ Let's take an example. If you had a vanilla classification neural network traine
   - A "pairing test", where pairs of images are shown to the network and it has to decide whether or not the two images belong to the same category.
   - A classification test, where the network compares new images to memorized images from various categories to attempt to classify the new images.
 
-* The train_and_test.sh script can be used to train and test an instance of SymbolNet all at once. With the default settings, it will train using uppercase letters and perform pairing and classification tests on both uppercase letters and digits separately. The tests with digits are meant to demonstrate the transfer learning capabilities of SymbolNet.
-
 * A code to "register memory" of requested categories, in register_memory.py. The memory of a category consists in a set of features at the output of each of the feature network's convolutional blocks, obtained by mapping images from that category through the feature network. The "num_mem" argument decides how many sets of features to memorize for each category, whereas the "num_see" decides how many images are used to get these sets of features. If num_see > num_mem, then a K-means algorithm is used to produce the memorized features.
+
+* The train_and_test.sh script can be used to train and test an instance of SymbolNet all at once. With the default settings, it will train using uppercase letters and perform pairing and classification tests on both uppercase letters and digits separately. The tests with digits are meant to demonstrate the transfer learning capabilities of SymbolNet. It will perform memory registration to create a memory file used during the classification tests.
 
 * An interactive mode where you can interact with an instance of SymbolNet by drawing your own symbols. You can even make SymbolNet memorize new categories of symbols. 
 
 * Some other visualization tools, in symbolnet_utils/visualize.py
 
-More detailed explanations can be found as comments within the scripts contained in this repo.
+More detailed explanations can be found as comments within the scripts contained in this repo. Note that throughout this repository, the "classes" argument is used to select which categories of symbols from the EMNIST dataset to use. For examples, classes='uppercases' means all the uppercase letters will be used, and classes='digits_lowercases' means the digits and lowercase letters will be used. A detailed explanation of how to specify other sets of symbol categories can be found in the comment in symbolnet_utils/emnist_tools.py in the EmnistClassLabelsSetup function.
 
 
 ### How to run this code
