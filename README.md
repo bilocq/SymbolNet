@@ -2,7 +2,7 @@
 ### A simple example of transfer learning using PyTorch and the EMNIST dataset
 SymbolNet is a neural network that accomplishes transfer learning in the context of image classification: it can be trained using a first group of image categories and applied to classify images in an second group of categories that may be disjoint from the first. The only requirement is that the idea of what constitutes a category remains similar throughout the two groups. For instance, you could train SymbolNet by showing it only handwritten letters (where the categories are "A", "B", "C", etc) and then use it to classify handwritten digits (where the categories are "1", "2", "3", etc) with a reasonably high accuracy. I've experimented with SymbolNet using the EMNIST dataset, which contains handwritten digits as well as uppercase and lowercase letters (hence the name), and this codebase is designed for that purpose. However, there's no hard constraint that would prevent SymbolNet from being used on other types of images.
 
-The basic idea is that instead of learning to recognize individual categories of images, like a standard classification neural network, **SymbolNet learns to recognize whether or not two images fall into the same category**. In practice, SymbolNet takes as input a pair of images and outputs a number that I call a similarity score: the higher this score is, the more likely SymbolNet thinks it is that the two images are in the same category. Effectively, this means SymbolNet is designed to learn what a category is in a certain context, which gives it much more flexibility than a standard classification network.
+The basic idea is that instead of learning to recognize individual categories of images, like a standard classification neural network, **SymbolNet learns to recognize whether or not two images fall into the same category**. In practice, SymbolNet takes as input a pair of images and outputs a number that I call a similarity score: the higher this score is, the more likely SymbolNet thinks it is that the two images are in the same category. Effectively, this means SymbolNet is designed to learn what "*category*" means in a certain context, which gives it much more flexibility than a standard classification network.
 
 
 ### Why is SymbolNet more flexible?
@@ -10,8 +10,19 @@ Let's take an example. If you had a vanilla network trained to recognize handwri
 
 
 
-### What's included in this code
-Coming soon
+### What's included in this repo
+* The SymbolNet architecture, under symbolnet_utils/networks.py. The SymbolNet neural network architecture consists of a convolutional "feature network" that is meant to extract relevant features from images, followed by a fully connected "evaluator" network which maps features to an output of two numbers, which correspond to the pair of images being classified as from the same category or from different categories. There are two settings to decide on when creating an instance of SymbolNet:
+  - The feature network can be made deeper or shallower, containing between one and three convolutional "blocks". We can choose the outputs of which of these blocks are to be used as inputs to the the evaluator network. In my rather informal experiments, the best results were obtained when the outputs of all three blocks were shown to the evaluator, but training is faster if we include fewer blocks in the feature network. In train.py, this setting corresponds to the "blocks" argument. The default is to include all three blocks.
+  - The two images in an input pair are mapped through the feature network separately, and the resulting features are then combined before being shown to the evaluator. This combination can either be a subtraction or a concatenation. The default is a subtraction.
+
+* The main training function for SymbolNet, in train.py. It relies on a data loader which yields pairs of images with a specific proportion of the pairs containing images from the same class.
+
+* Two ways of testing an instance of SymbolNet: 
+  - A "pairing test", where pairs of images are shown to the network and it has to decide whether or not the two images belong to the same category.
+  - A classification test, where the network compares new images to memorized images from various categories to attempt to classify the new images.
+
+* A code to "register memory" of requested categories. 
+
 
 
 
