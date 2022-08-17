@@ -27,6 +27,8 @@ Let's take an example. If you had a vanilla classification neural network traine
 
 * Some other visualization tools, in symbolnet_utils/visualize.py
 
+More detailed explanations can be found as comments within the scripts contained in this repo.
+
 
 ### How to run this code
 Create a Python virtual environment and install the requirements file (pip install -r requirements.txt). I've tested this code with Python 3.8.
