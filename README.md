@@ -39,6 +39,6 @@ When running train.py, the "folder" arguments (expects a path to a folder) deter
 
 
 ## Acknowledgments
-* The training_stats.py script is an adaptation of the very nice plot.py script from https://github.com/caogang/wgan-gp ((c) 2017 Ishaan Gulrajani). Distributed under the MIT licence.
+* The training_stats.py script is an adaptation of the very nice plot.py script from https://github.com/caogang/wgan-gp. Distributed under the MIT licence.
 
 * The EMNIST dataset can be found here: https://www.nist.gov/itl/products-and-services/emnist-dataset.
